@@ -2,7 +2,7 @@ import asyncio
 import sqlalchemy as sa
 
 
-__all__ = ['question', 'choice']
+__all__ = ['question', 'choice', 'date']
 
 meta = sa.MetaData()
 
@@ -30,6 +30,15 @@ choice = sa.Table(
                             ondelete='CASCADE'),
 )
 
+date = sa.Table(
+    'date', meta,
+    sa.Column('id', sa.Integer, nullable=False),
+    sa.Column('money', sa.Integer, nullable=False),
+    sa.Column('res_date', sa.Date, nullable=False),
+
+    # Indexes #
+    sa.PrimaryKeyConstraint('id', name='choice_id_pkey')
+)
 
 class RecordNotFound(Exception):
     """Requested record in database was not found"""
